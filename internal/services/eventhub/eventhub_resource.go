@@ -118,9 +118,7 @@ func resourceEventHub() *pluginsdk.Resource {
 										Required: true,
 										ValidateFunc: validation.StringInSlice([]string{
 											"EventHubArchive.AzureBlockBlob",
-											// TODO: support `EventHubArchive.AzureDataLake` once supported in the Swagger / SDK
-											// https://github.com/Azure/azure-rest-api-specs/issues/2255
-											// BlobContainerName & StorageAccountID can then become Optional
+											"EventHubArchive.AzureDataLake",
 										}, false),
 									},
 									"archive_name_format": {
@@ -130,11 +128,11 @@ func resourceEventHub() *pluginsdk.Resource {
 									},
 									"blob_container_name": {
 										Type:     pluginsdk.TypeString,
-										Required: true,
+										Optional: true,
 									},
 									"storage_account_id": {
 										Type:         pluginsdk.TypeString,
-										Required:     true,
+										Optional: true,
 										ValidateFunc: commonids.ValidateStorageAccountID,
 									},
 								},
